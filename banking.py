@@ -1,34 +1,68 @@
 #! /bin/env/ python
 
-def WhatToDo():
-    global Balance
-    if check == 'c':
-        nameUser = input('What will be your username?: ')
+nameUser = ''
+accountUser = ''
+passwordUser = ''
+Balance = ''
+guess = ''
+
+def login():
+    global nameUser, accountUser, passwordUser
+    nameGuess = input('What is your username? ')
+    passwordGuess = input('What is your password? ')
+    if nameGuess == nameUser:
+        if passwordGuess == passwordUser:
+            guess = True
+        return guess
+    else:
+        print('Incorrect username/password')
+        guess = False
+        return guess
+
+def Createaccount():
+    global nameUser, accountUser, passwordUser, Balance
+    nameUser = input('What is your username? ')
+    passwordUser = input('What is your password? ')
+    Balance = input('How much will you add to your account? ')
+
+def Checkbalance():
+    global Balance, guess
+    login()
+    if guess == True
         print(nameUser)
-        ageUser = input('What is your age?: ')
-        passwordUser = input('Create a password: ')
-        print(nameUser)
-        print(ageUser)
-        print(Balance)
-    elif check == 'd':
-        deposit = input('How much would you like to deposit?: ')
-        Balance += int(deposit)
-        print(Balance)
-        return Balance
-    elif check == 'w':
-        withdraw = input('What would you like to withdraw?: ')
-        Balance -= int(withdraw)
-        print(Balance)
-        return Balance
-    elif check == 'h':
+        print(accountUser)
         print(Balance)
 
+def Deposit():
+    global Balance, guess
+    login()
+    if guess == True
+        deposit = input('How much would you like to deposit? ')
+        Balance += int(deposit)
+        return Balance
+        checkbalance()
+
+def Withdrawl():
+    global Balance, guess
+    login()
+    if guess == True
+        withdrawl = input('How much would you like to withdrawl? ')
+        Balance -= int(withdrawl)
+        return Balance
+        checkbalance()
 
 while True:
-    Balance = 500
-    check = input('What would you like to do? ([C]reate account, [D]eposit money, [W]ithdraw money, or C[H]eck your balance): ')
-    check.casefold()
-    WhatToDo()
-    goAgain = input('y, n: ')
-    if goAgain == 'n':
-        break
+    print('Welcome to the bank!')
+    print('You can \"create an account[ca]\",\"check your balance[cb]\", \"deposit money[d]\", or \"withdrawl money[w]\"')
+    todo = input('What would you like to do? ')
+    if todo == 'ca':
+        Createaccount()
+    elif todo == 'cb':
+        Checkbalance()
+    elif todo == 'd':
+        Deposit()
+    elif todo == 'w':
+        Withdrawl()
+    again = input('Would you like to go again? ')
+    if again == 'y':
+        return False
