@@ -2,7 +2,7 @@
 
 nameUser = ''
 passwordUser = ''
-Balance = ''
+Balance = 0
 guess = False
 
 def login():
@@ -22,7 +22,8 @@ def Createaccount():
     global nameUser, passwordUser, Balance
     nameUser = input('What is your username? ')
     passwordUser = input('What is your password? ')
-    Balance = input('How much will you add to your account? ')
+    Balance = int(input('How much will you add to your account? '))
+    int(Balance)
 
 def Checkbalance():
     global nameUser, passwordUser, Balance, guess
@@ -37,21 +38,19 @@ def Deposit():
     if guess == True:
         deposit = input('How much would you like to deposit? ')
         Balance += int(deposit)
-        return Balance
-        checkbalance()
+        Checkbalance()
 
-def Withdrawl():
+def Withdraw():
     global Balance, guess
     login()
     if guess == True:
-        withdrawl = input('How much would you like to withdrawl? ')
-        Balance -= int(withdrawl)
-        return Balance
-        checkbalance()
+        withdraw = input('How much would you like to withdraw? ')
+        Balance -= int(withdraw)
+        Checkbalance()
 
 while True:
     print('Welcome to the bank!')
-    print('You can \"create an account[ca]\",\"check your balance[cb]\", \"deposit money[d]\", or \"withdrawl money[w]\"')
+    print('You can \"create an account[ca]\",\"check your balance[cb]\", \"deposit money[d]\", or \"withdraw money[w]\"')
     print(nameUser)
     print(passwordUser)
     print(Balance)
@@ -64,7 +63,7 @@ while True:
     elif todo == 'd':
         Deposit()
     elif todo == 'w':
-        Withdrawl()
+        Withdraw()
     again = input('Would you like to go again? ')
     if again == 'n':
         break
