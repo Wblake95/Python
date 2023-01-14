@@ -1,36 +1,34 @@
 #! /bin/env/ python
 
 nameUser = ''
-accountUser = ''
 passwordUser = ''
 Balance = ''
-guess = ''
+guess = False
 
 def login():
-    global nameUser, accountUser, passwordUser
+    global nameUser, passwordUser, guess
     nameGuess = input('What is your username? ')
-    passwordGuess = input('What is your password? ')
     if nameGuess == nameUser:
+        print('correct')
+        passwordGuess = input('What is your password? ')
         if passwordGuess == passwordUser:
+            print('correct')
             guess = True
-        return guess
     else:
         print('Incorrect username/password')
         guess = False
-        return guess
 
 def Createaccount():
-    global nameUser, accountUser, passwordUser, Balance
+    global nameUser, passwordUser, Balance
     nameUser = input('What is your username? ')
     passwordUser = input('What is your password? ')
     Balance = input('How much will you add to your account? ')
 
 def Checkbalance():
-    global nameUser, accountUser, passwordUser, Balance, guess
+    global nameUser, passwordUser, Balance, guess
     login()
     if guess == True:
         print(nameUser)
-        print(accountUser)
         print(Balance)
 
 def Deposit():
@@ -55,7 +53,6 @@ while True:
     print('Welcome to the bank!')
     print('You can \"create an account[ca]\",\"check your balance[cb]\", \"deposit money[d]\", or \"withdrawl money[w]\"')
     print(nameUser)
-    print(accountUser)
     print(passwordUser)
     print(Balance)
     print(guess)
