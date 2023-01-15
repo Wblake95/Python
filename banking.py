@@ -7,63 +7,66 @@ guess = False
 
 def login():
     global nameUser, passwordUser, guess
-    nameGuess = input('What is your username? ')
-    if nameGuess == nameUser:
+    name_guess = input('What is your username? ')
+    if name_guess == nameUser:
         print('correct')
-        passwordGuess = input('What is your password? ')
-        if passwordGuess == passwordUser:
+        password_guess = input('What is your password? ')
+        if password_guess == passwordUser:
             print('correct')
             guess = True
     else:
         print('Incorrect username/password')
-        guess = False
 
-def Createaccount():
+def create_account():
     global nameUser, passwordUser, Balance
     nameUser = input('What is your username? ')
     passwordUser = input('What is your password? ')
     Balance = int(input('How much will you add to your account? '))
     int(Balance)
 
-def Checkbalance():
+def check_balance():
     global nameUser, passwordUser, Balance, guess
     login()
-    if guess == True:
+    if guess:
         print(nameUser)
         print(Balance)
 
-def Deposit():
-    global Balance, guess
-    login()
-    if guess == True:
-        deposit = input('How much would you like to deposit? ')
-        Balance += int(deposit)
-        Checkbalance()
 
-def Withdraw():
+def deposit():
     global Balance, guess
     login()
-    if guess == True:
-        withdraw = input('How much would you like to withdraw? ')
-        Balance -= int(withdraw)
-        Checkbalance()
+    if guess:
+        a_deposit = input('How much would you like to deposit? ')
+        Balance += int(a_deposit)
+        check_balance()
+
+
+def withdraw():
+    global Balance, guess
+    login()
+    if guess:
+        a_withdraw = input('How much would you like to withdraw? ')
+        Balance -= int(a_withdraw)
+        check_balance()
+
 
 while True:
     print('Welcome to the bank!')
-    print('You can \"create an account[ca]\",\"check your balance[cb]\", \"deposit money[d]\", or \"withdraw money[w]\"')
+    print(
+        'You can \"create an account[ca]\",\"check your balance[cb]\", \"deposit money[d]\", or \"withdraw money[w]\"')
     print(nameUser)
     print(passwordUser)
     print(Balance)
     print(guess)
     todo = input('What would you like to do? ')
     if todo == 'ca':
-        Createaccount()
+        create_account()
     elif todo == 'cb':
-        Checkbalance()
+        check_balance()
     elif todo == 'd':
-        Deposit()
+        deposit()
     elif todo == 'w':
-        Withdraw()
+        withdraw()
     again = input('Would you like to go again? ')
     if again == 'n':
         break
