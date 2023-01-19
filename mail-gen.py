@@ -1,6 +1,10 @@
+from smtplib import SMTP
 from email import generator
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
+with SMTP('local host', port=111) as smtp:
+    smtp.noop()
 
 def Creat_Email():
     msg             = MIMEMultipart('alternative')
