@@ -2,7 +2,7 @@
 
 nameUser = ''
 passwordUser = ''
-Balance = 0
+balanceUser = 0
 guess = False
 
 def login():
@@ -18,7 +18,7 @@ def login():
         print('Incorrect username/password')
 
 def create_account():
-    global nameUser, passwordUser, Balance
+    global nameUser, passwordUser, balanceUser
     nameUser = input('What is your username? ')
     passwordUser = input('What is your password? ')
     Balance = int(input('How much will you add to your account? '))
@@ -37,12 +37,12 @@ def deposit():
     login()
     if guess:
         a_deposit = input('How much would you like to deposit? ')
-        Balance += int(a_deposit)
+        balanceUser += int(a_deposit)
         check_balance()
 
 
 def withdraw():
-    global Balance, guess
+    global balanceUser, guess
     login()
     if guess:
         a_withdraw = input('How much would you like to withdraw? ')
@@ -52,12 +52,7 @@ def withdraw():
 
 while True:
     print('Welcome to the bank!')
-    print(
-        'You can \"create an account[ca]\",\"check your balance[cb]\", \"deposit money[d]\", or \"withdraw money[w]\"')
-    print(nameUser)
-    print(passwordUser)
-    print(Balance)
-    print(guess)
+    print('You can \"create an account[ca]\",\"check your balance[cb]\", \"deposit money[d]\", or \"withdraw money[w]\"')
     todo = input('What would you like to do? ')
     if todo == 'ca':
         create_account()
