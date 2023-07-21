@@ -5,17 +5,16 @@ try:
         try:
             number = int(input("Enter a number: "))
             break
-            # print(number)
         except ValueError:
             print("That is not a number!")
             continue
-    while number>1:
-        if number%2==0:
+    while number>1: # This is the math for the collatz. Apparently, it will always end in 1.
+        if number%2==0: # Test for even.
             number=number//2
-            print("Even number:", number)
-        else:
+            print(number)
+        else: # Else it will be odd.
             number=number*3+1
-            print("Odd number:", number)
+            print(number)
 
 except KeyboardInterrupt:
     print("This game was interrupted by the keyboard, Good bye!")
