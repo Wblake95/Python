@@ -11,9 +11,11 @@ try:
             continue
     while number>1:
         if number%2==0:
-            print("Even number:", number//2)
+            number=number//2
+            print("Even number:", number)
         else:
-            print("Odd number:", number*3+1)
+            number=number*3+1
+            print("Odd number:", number)
 
 except KeyboardInterrupt:
     print("This game was interrupted by the keyboard, Good bye!")
