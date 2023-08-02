@@ -11,5 +11,3 @@ parser.add_argument("3")
 args = parser.parse_args()
 
 print(args)
-
-
