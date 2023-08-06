@@ -23,10 +23,10 @@ class Calculator(Gtk.Window):
         button0 = Gtk.Button(label="0")
         buttonSign = Gtk.Button(label="-/+")
 
-        buttonx = Gtk.Button(label="x")
-        button/ = Gtk.Button(label="/")
-        button+ = Gtk.Button(label="+")
-        button- = Gtk.Button(label="-")
+        buttonMultiply = Gtk.Button(label="x")
+        buttonDivide = Gtk.Button(label="/")
+        buttonAdd = Gtk.Button(label="+")
+        buttonSubtract = Gtk.Button(label="-")
         buttonEnter = Gtk.Button(label="=")
         
         grid = Gtk.Grid()
@@ -41,13 +41,13 @@ class Calculator(Gtk.Window):
         grid.attach(button9,2,2,1,1)
 
         grid.attach(button0,0,3,2,1)
-        grid.attach_next_to(buttonSign,button0,Gtk.PositionTypeRight,1,1)
+        grid.attach_next_to(buttonSign,button0,Gtk.PositionType.RIGHT,1,1)
 
-        grid.attach(buttonx,3,0,1,1)
-        grid.attach(button/,3,1,1,1)
-        grid.attach(button-,3,2,1,1)
-        grid.attach(button+,3,3,1,1)
-        grid.attach(buttonEnter,)
+        grid.attach(buttonMultiply,3,0,1,1)
+        grid.attach(buttonDivide,3,1,1,1)
+        grid.attach(buttonAdd,3,2,1,1)
+        grid.attach(buttonSubtract,3,3,1,1)
+        grid.attach(buttonEnter,0,4,4,1)
 
         self.add(grid)
 
