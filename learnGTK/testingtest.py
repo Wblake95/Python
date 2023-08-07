@@ -31,7 +31,7 @@ class Calculator(Gtk.Window): # my sub class
         self.add(grid)
 
         # my function
-    def clickedButton1():
+    def clickedButton1(self, entry):
         self.entry.set_text("1")
         return self.entry
 

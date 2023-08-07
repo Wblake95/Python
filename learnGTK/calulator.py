@@ -16,24 +16,24 @@ class Calculator(Gtk.Window):
         self.button1 = Gtk.Button(label="1")
         self.button1.connect("clicked", self.clickedButton1)
         self.button2 = Gtk.Button(label="2")
-        # self.button2.connect("clicked", self.on_button2_clicked)
+        self.button2.connect("clicked", self.clickedButton2)
         self.button3 = Gtk.Button(label="3")
-        # self.button3.connect("clicked", self.on_button3_clicked)
+        self.button3.connect("clicked", self.clickedButton3)
         self.button4 = Gtk.Button(label="4")
-        # self.button4.connect("clicked", self.on_button4_clicked)
+        self.button4.connect("clicked", self.clickedButton4)
         self.button5 = Gtk.Button(label="5")
-        # self.button5.connect("clicked", self.on_button5_clicked)
+        self.button5.connect("clicked", self.clickedButton5)
         self.button6 = Gtk.Button(label="6")
-        # self.button6.connect("clicked", self.on_button6_clicked)
+        self.button6.connect("clicked", self.clickedButton6)
         self.button7 = Gtk.Button(label="7")
-        # self.button7.connect("clicked", self.on_button7_clicked)
+        self.button7.connect("clicked", self.clickedButton7)
         self.button8 = Gtk.Button(label="8")
-        # self.button8.connect("clicked", self.on_button8_clicked)
+        self.button8.connect("clicked", self.clickedButton8)
         self.button9 = Gtk.Button(label="9")
-        # self.button9.connect("clicked", self.on_button9_clicked)
+        self.button9.connect("clicked", self.clickedButton9)
 
         self.button0 = Gtk.Button(label="0")
-        # self.button0.connect("clicked", self.on_button0_clicked)
+        self.button0.connect("clicked", self.clickedButton0)
         self.buttonSign = Gtk.Button(label="-/+")
         # self.buttonSign.connect("clicked", self.on_buttonSign_clicked)
 
@@ -48,8 +48,10 @@ class Calculator(Gtk.Window):
         self.buttonEnter = Gtk.Button(label="=")
         # self.buttonEnter.connect("clicked", self.on_buttonEnter_clicked)
 
+        # self.text = ""
         self.entry = Gtk.Entry()
         self.entry.set_text("")
+        # self.entry.set_text(self.text)
 
         grid = Gtk.Grid()
         grid.add(self.button1)
@@ -74,29 +76,51 @@ class Calculator(Gtk.Window):
 
         self.add(grid)
 
-    def clickedButton1():
-        self.entry.set_text("1")
-    # def button2 ():
-    #     return 2
-    # def button3 ():
-    #     return 4
-    # def button5 ()
-    #     return 5
-    # def button6 ()
-    #     return 6
-    # def button7 ()
-    #     return 7
-    # def button8 ()
-    #     return 8
-    # def button9 ()
-    #     return 9
-    # def button0 ()
-    #     return 0
-    # def buttonMultiply ()
-    # def buttonDivide ()
-    # def buttonAdd ()
-    # def buttonEnter ()
-    # def buttonSign ()
+    def clickedButton1(self, entry):
+        text = self.entry.get_text()
+        text += "1"
+        self.entry.set_text(text)
+    def clickedButton2 (self, entry):
+        text = self.entry.get_text()
+        text += "2"
+        self.entry.set_text(text)
+    def clickedButton3(self, entry):
+        text = self.entry.get_text()
+        text += "3"
+        self.entry.set_text(text)
+    def clickedButton4(self, entry):
+        text = self.entry.get_text()
+        text += "4"
+        self.entry.set_text(text)
+    def clickedButton5(self, entry):
+        text = self.entry.get_text()
+        text += "5"
+        self.entry.set_text(text)
+    def clickedButton6(self, entry):
+        text = self.entry.get_text()
+        text += "6"
+        self.entry.set_text(text)
+    def clickedButton7(self, entry):
+        text = self.entry.get_text()
+        text += "7"
+        self.entry.set_text(text)
+    def clickedButton8(self, entry):
+        text = self.entry.get_text()
+        text += "8"
+        self.entry.set_text(text)
+    def clickedButton9(self, entry):
+        text = self.entry.get_text()
+        text += "9"
+        self.entry.set_text(text)
+    def clickedButton0(self, entry):
+        text = self.entry.get_text()
+        text += "0"
+        self.entry.set_text(text)
+    # def buttonMultiply(self, entry)
+    # def buttonDivide(self, entry)
+    # def buttonAdd(self, entry)
+    # def buttonEnter(self, entry)
+    # def buttonSign(self, entry)
 
 win = Calculator()
 win.connect("destroy", Gtk.main_quit)
