@@ -8,11 +8,14 @@ class Calculator(Gtk.Window):
         super().__init__(title="Calculator")
         self.set_border_width(10)
 
+        # Header bar and exit button
         headerBar = Gtk.HeaderBar()
         headerBar.set_show_close_button(True)
         headerBar.props.title = "Calculator"
         self.set_titlebar(headerBar)
 
+        # All the buttons
+        # Numbers
         self.button1 = Gtk.Button(label="1")
         self.button1.connect("clicked", self.clickedButton1)
         self.button2 = Gtk.Button(label="2")
@@ -32,27 +35,31 @@ class Calculator(Gtk.Window):
         self.button9 = Gtk.Button(label="9")
         self.button9.connect("clicked", self.clickedButton9)
 
+        # Zero 
         self.button0 = Gtk.Button(label="0")
         self.button0.connect("clicked", self.clickedButton0)
         self.buttonSign = Gtk.Button(label="-/+")
-        # self.buttonSign.connect("clicked", self.on_buttonSign_clicked)
+        # self.buttonSign.connect("clicked", self.clickedButton9)
 
+        # Oporator buttons
         self.buttonMultiply = Gtk.Button(label="x")
-        # self.buttonMultiply.connect("clicked", self.on_buttonMultiply_clicked)
+        self.buttonMultiply.connect("clicked", self.clickedMultiply)
         self.buttonDivide = Gtk.Button(label="/")
-        # self.buttonDivide.connect("clicked", self.on_buttonDivide_clicked)
+        self.buttonDivide.connect("clicked", self.clickedDivide)
         self.buttonAdd = Gtk.Button(label="+")
-        # self.buttonAdd.connect("clicked", self.on_buttonAdd_clicked)
-        self.buttonSubtract = Gtk.Button(label="+")
-        # self.buttonSubtract.connect("clicked", self.on_buttonSubtract_clicked)
+        self.buttonAdd.connect("clicked", self.clickedAdd)
+        self.buttonSubtract = Gtk.Button(label="-")
+        self.buttonSubtract.connect("clicked", self.clickedSubtract)
         self.buttonEnter = Gtk.Button(label="=")
-        # self.buttonEnter.connect("clicked", self.on_buttonEnter_clicked)
+        # self.buttonEnter.connect("clicked", self.clickedEnter)
+        self.buttonClear = Gtk.Button(label="c")
+        self.buttonClear.connect("clicked", self.clickedClear)
 
-        # self.text = ""
+        # Entry field
         self.entry = Gtk.Entry()
         self.entry.set_text("")
-        # self.entry.set_text(self.text)
 
+        # Organizing the application buttons and entry field
         grid = Gtk.Grid()
         grid.add(self.button1)
         grid.attach_next_to(self.entry,self.button1,Gtk.PositionType.TOP,4,4)
@@ -72,10 +79,12 @@ class Calculator(Gtk.Window):
         grid.attach(self.buttonDivide,3,1,1,1)
         grid.attach(self.buttonAdd,3,2,1,1)
         grid.attach(self.buttonSubtract,3,3,1,1)
-        grid.attach(self.buttonEnter,0,4,4,1)
+        grid.attach(self.buttonEnter,2,4,2,1)
+        grid.attach(self.buttonClear,0,4,2,1)
 
         self.add(grid)
 
+    # logic of buttons
     def clickedButton1(self, entry):
         text = self.entry.get_text()
         text += "1"
@@ -116,11 +125,34 @@ class Calculator(Gtk.Window):
         text = self.entry.get_text()
         text += "0"
         self.entry.set_text(text)
-    # def buttonMultiply(self, entry)
-    # def buttonDivide(self, entry)
-    # def buttonAdd(self, entry)
-    # def buttonEnter(self, entry)
-    # def buttonSign(self, entry)
+
+    def signCheck(self, text):
+        check = ["x","/","+","-"]
+        checkSign = self.entry.get_text()
+        if checkSign[-1] in check:
+            return False
+        else:
+            return True
+
+    def clickedMultiply(self, entry):
+        text = self.entry.get_text()
+        if self.signCheck(text): text += "x"
+        self.entry.set_text(text)
+    def clickedDivide(self, entry):
+        text = self.entry.get_text()
+        if self.signCheck(text): text += "/"
+        self.entry.set_text(text)
+    def clickedAdd(self, entry):
+        text = self.entry.get_text()
+        if self.signCheck(text): text += "+"
+        self.entry.set_text(text)
+    def clickedSubtract(self, entry):
+        text = self.entry.get_text()
+        if self.signCheck(text): text += "-"
+        self.entry.set_text(text)
+    # def clickedEnter(self):
+    def clickedClear(self, entry):
+        self.entry.set_text("")
 
 win = Calculator()
 win.connect("destroy", Gtk.main_quit)
