@@ -42,7 +42,7 @@ class Calculator(Gtk.Window):
         # self.buttonSign.connect("clicked", self.clickedSign)
 
         # Operator buttons
-        self.buttonMultiply = Gtk.Button(label="x")
+        self.buttonMultiply = Gtk.Button(label="*")
         self.buttonMultiply.connect("clicked", self.clickedMultiply)
         self.buttonDivide = Gtk.Button(label="/")
         self.buttonDivide.connect("clicked", self.clickedDivide)
@@ -129,51 +129,43 @@ class Calculator(Gtk.Window):
         self.entry.set_text(text)
 
     def signCheck(self, text):
-        check = ["x","/","+","-"]
+        check = ["*","/","+","-"]
         checkSign = self.entry.get_text()
         if checkSign[-1] in check:
             return False
         else:
             return True
 
-    a = []
-    operator = ""
     def clickedMultiply(self, entry):
-        a = self.entry.get_text()
         text = self.entry.get_text()
         if self.signCheck(text):
-            self.a.append(self.entry.get_text())
-            text += " x "
-            self.operator = "m"
+            text += "*"
         self.entry.set_text(text)
     def clickedDivide(self, entry):
         text = self.entry.get_text()
         if self.signCheck(text):
-            self.a.append(self.entry.get_text())
-            text += " / "
-            self.operator = "d"
+            text += "/"
         self.entry.set_text(text)
     def clickedAdd(self, entry):
         text = self.entry.get_text()
         if self.signCheck(text):
-            self.a.append(self.entry.get_text())
-            text += " + "
-            self.operator = "a"
+            text += "+"
         self.entry.set_text(text)
     def clickedSubtract(self, entry):
         text = self.entry.get_text()
         if self.signCheck(text):
-            self.a.append(self.entry.get_text())
-            text += " - "
-            self.perator = "s"
+            text += "-"
         self.entry.set_text(text)
 
     def clickedEnter(self, entry):
-        match self.operator:
-            case "m": self.entry.set_text(self.a[0]*self.a[1])
-            case "d": self.entry.set_text(self.a[0]/self.a[1])
-            case "a": self.entry.set_text(self.a[0]+self.a[1])
-            case "s": self.entry.set_text(self.a[0]-self.a[1])
+        # match self.operator:
+        #     case "m": self.entry.set_text(self.a[0]*self.a[1])
+        #     case "d": self.entry.set_text(self.a[0]/self.a[1])
+        #     case "a": self.entry.set_text(self.a[0]+self.a[1])
+        #     case "s": self.entry.set_text(self.a[0]-self.a[1])
+        submit = self.entry.get_text()
+        answer = eval(submit)
+        self.entry.set_text(str(answer))
     def clickedClear(self, entry):
         self.entry.set_text("")
     # def clickedSign():
