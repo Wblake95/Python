@@ -187,10 +187,11 @@ class Calculator(Gtk.Window):
         for i in reversed(text):
             print(i)
             if text == "":
-                print("text 1: no space")
+                print("test 1: no space")
                 text += "(-"
                 break
             if not self.signCheck(text):#signCheck is complicated
+                print("test 2: detect operator")
                 text = text[:text.index[i+1]] + "(-" + text[text.index[i+1:]]
                 break
             if i == "-":
