@@ -7,10 +7,12 @@ class DimmerSwitch():
 
     def LightOn(self):
         self.TurnLightOn = True
+        self.Bright()
         return self.TurnLightOn
 
     def LightOff(self):
         self.TurnLightOn = False
+        self.Brightness = 0
         return self.TurnLightOn
 
     def Bright(self):
@@ -31,3 +33,17 @@ class DimmerSwitch():
         print('Status ', self.TurnLightOn)
         print('Brightness ', self.Brightness)
 
+switch = DimmerSwitch()
+
+switch.LightOn()
+switch.Show()
+switch.LightOff()
+switch.Show()
+switch.LightOn()
+switch.Bright()
+switch.Bright()
+switch.Bright()
+switch.Show()
+switch.Dimmer()
+switch.Dimmer()
+switch.Show()
