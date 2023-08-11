@@ -147,6 +147,14 @@ class Calculator(Gtk.Window):
             return False
         else:
             return True
+    def isInt(self, text):
+        try:
+            int(text[-1])
+        except ValueError:
+            return False
+        except IndexError:
+            return False
+        return True
 
     # Logic append opporator to entry text
     def clickedDivide(self, entry):
@@ -175,7 +183,10 @@ class Calculator(Gtk.Window):
         self.entry.set_text("")
     def clickedParaLeft(self, entry):
         text = self.entry.get_text()
-        text += "("
+        if self.isInt(text):
+            text += "*("
+        else:
+            text += "("
         self.entry.set_text(text)
     def clickedParaRight(self, entry):
         text = self.entry.get_text()
@@ -183,12 +194,15 @@ class Calculator(Gtk.Window):
         self.entry.set_text(text)
     def clickedSign(self, entry):
         text = self.entry.get_text()
-        if not self.signCheck(text):
+        if self.isInt(text):
+            text += "*(-"
+        elif not self.signCheck(text):
             text += "(-"
         self.entry.set_text(text)
     def clickedPeriod(self, entry):
         text = self.entry.get_text()
-        text += "."
+        if self.signCheck(text):
+            text += "."
         self.entry.set_text(text)
     def clickedEnter(self, entry):
         submit = self.entry.get_text()
