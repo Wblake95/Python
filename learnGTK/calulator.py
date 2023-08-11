@@ -138,9 +138,11 @@ class Calculator(Gtk.Window):
 
     # Check to make sure a sign is not repeated
     def signCheck(self, text):
-        check = ["*","/","+","-",""]
+        check = ["*","/","+","-"]
         checkSign = self.entry.get_text()
-        if checkSign[-1] in check:
+        if checkSign == "":
+            return False
+        elif checkSign[-1] in check:
             return False
         else:
             return True
@@ -178,30 +180,20 @@ class Calculator(Gtk.Window):
         text = self.entry.get_text()
         text += ")"
         self.entry.set_text(text)
-    def clickedEnter(self, entry):
-        submit = self.entry.get_text()
-        answer = eval(submit)
-        self.entry.set_text(str(answer))
     def clickedSign(self, entry):
         text = self.entry.get_text()
-        for i in reversed(text):
-            print(i)
-            if text == "":
-                print("test 1: no space")
-                text += "(-"
-                break
-            if not self.signCheck(text):#signCheck is complicated
-                print("test 2: detect operator")
-                text = text[:text.index[i+1]] + "(-" + text[text.index[i+1:]]
-                break
-            if i == "-":
-                temp = True
-            if i == "(" and temp:
-                text = text.replace("{i}","")
-                text = text.replace("{i}","")
-                break
+        if not self.signCheck(text):
+            # if text[-1] == "-":
+            text += "(-"
         self.entry.set_text(text)
-
+    # def clickedPeiod(self, entry):
+    def clickedEnter(self, entry):
+        submit = self.entry.get_text()
+        try:
+            answer = eval(submit)
+        except SyntaxError:
+            answer = "Missing a '(' or ')':", submit
+        self.entry.set_text(str(answer))
 
 win = Calculator()
 win.connect("destroy", Gtk.main_quit)
