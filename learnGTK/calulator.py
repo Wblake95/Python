@@ -34,12 +34,8 @@ class Calculator(Gtk.Window):
         button8.connect("clicked", self.clickedButton8)
         button9 = Gtk.Button(label="9")
         button9.connect("clicked", self.clickedButton9)
-
-        # Zero and sign
         button0 = Gtk.Button(label="0")
         button0.connect("clicked", self.clickedButton0)
-        buttonSign = Gtk.Button(label="-/+")
-        # self.buttonSign.connect("clicked", self.clickedSign)
 
         # Operator buttons
         buttonMultiply = Gtk.Button(label="*")
@@ -56,10 +52,14 @@ class Calculator(Gtk.Window):
         buttonEnter.connect("clicked", self.clickedEnter)
         buttonClear = Gtk.Button(label="c")
         buttonClear.connect("clicked", self.clickedClear)
-        buttonPara = Gtk.Button(label="()")
-        buttonClear.connect("clicked", self.clickedPara)
+        buttonSign = Gtk.Button(label="-/+")
+        buttonSign.connect("clicked", self.clickedSign)
+        buttonParaLeft = Gtk.Button(label="(")
+        buttonParaLeft.connect("clicked", self.clickedParaLeft)
+        buttonParaRight = Gtk.Button(label=")")
+        buttonParaRight.connect("clicked", self.clickedParaRight)
         buttonPeriod = Gtk.Button(label=".")
-        buttonPecent = Gtk.Button(label="%")
+            # function
 
         # Entry field
         self.entry = Gtk.Entry()
@@ -70,8 +70,8 @@ class Calculator(Gtk.Window):
         grid = Gtk.Grid()
         grid.add(buttonClear)
         grid.attach_next_to(self.entry, buttonClear, Gtk.PositionType.TOP,3,4)
-        grid.attach(buttonPara,1,0,1,1)
-        grid.attach(buttonPecent,2,0,1,1)
+        grid.attach(buttonParaLeft,1,0,1,1)
+        grid.attach(buttonParaRight,2,0,1,1)
         grid.attach(button7,0,1,1,1)
         grid.attach(button8,1,1,1,1)
         grid.attach(button9,2,1,1,1)
@@ -136,49 +136,71 @@ class Calculator(Gtk.Window):
         text += "0"
         self.entry.set_text(text)
 
+    # Check to make sure a sign is not repeated
     def signCheck(self, text):
-        check = ["*","/","+","-"]
+        check = ["*","/","+","-",""]
         checkSign = self.entry.get_text()
         if checkSign[-1] in check:
             return False
         else:
             return True
 
-    def clickedMultiply(self, entry):
-        text = self.entry.get_text()
-        if self.signCheck(text):
-            text += "*"
-        self.entry.set_text(text)
+    # Logic append opporator to entry text
     def clickedDivide(self, entry):
         text = self.entry.get_text()
         if self.signCheck(text):
             text += "/"
         self.entry.set_text(text)
-    def clickedAdd(self, entry):
+    def clickedMultiply(self, entry):
         text = self.entry.get_text()
         if self.signCheck(text):
-            text += "+"
+            text += "*"
         self.entry.set_text(text)
     def clickedSubtract(self, entry):
         text = self.entry.get_text()
         if self.signCheck(text):
             text += "-"
         self.entry.set_text(text)
-    def clickedPara(self, entry):
+    def clickedAdd(self, entry):
         text = self.entry.get_text()
-        for i in reversed(text):
-            if ")" != i:
-                text += "("
-            else:
-                text +=")"
+        if self.signCheck(text):
+            text += "+"
+        self.entry.set_text(text)
+
+    # Extra buttons
+    def clickedClear(self, entry):
+        self.entry.set_text("")
+    def clickedParaLeft(self, entry):
+        text = self.entry.get_text()
+        text += "("
+        self.entry.set_text(text)
+    def clickedParaRight(self, entry):
+        text = self.entry.get_text()
+        text += ")"
         self.entry.set_text(text)
     def clickedEnter(self, entry):
         submit = self.entry.get_text()
         answer = eval(submit)
         self.entry.set_text(str(answer))
-    def clickedClear(self, entry):
-        self.entry.set_text("")
-    # def clickedSign():
+    def clickedSign(self, entry):
+        text = self.entry.get_text()
+        for i in reversed(text):
+            print(i)
+            if text == "":
+                print("text 1: no space")
+                text += "(-"
+                break
+            if not self.signCheck(text):#signCheck is complicated
+                text = text[:text.index[i+1]] + "(-" + text[text.index[i+1:]]
+                break
+            if i == "-":
+                temp = True
+            if i == "(" and temp:
+                text = text.replace("{i}","")
+                text = text.replace("{i}","")
+                break
+        self.entry.set_text(text)
+
 
 win = Calculator()
 win.connect("destroy", Gtk.main_quit)
