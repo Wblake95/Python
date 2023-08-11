@@ -57,13 +57,14 @@ class Calculator(Gtk.Window):
         buttonClear = Gtk.Button(label="c")
         buttonClear.connect("clicked", self.clickedClear)
         buttonPara = Gtk.Button(label="()")
+        buttonClear.connect("clicked", self.clickedPara)
         buttonPeriod = Gtk.Button(label=".")
         buttonPecent = Gtk.Button(label="%")
 
         # Entry field
         self.entry = Gtk.Entry()
         self.entry.set_text("")
-
+        self.entry.set_editable(False)
 
         # Organizing the application buttons and entry field
         grid = Gtk.Grid()
@@ -163,13 +164,15 @@ class Calculator(Gtk.Window):
         if self.signCheck(text):
             text += "-"
         self.entry.set_text(text)
-
+    def clickedPara(self, entry):
+        text = self.entry.get_text()
+        for i in reversed(text):
+            if ")" != i:
+                text += "("
+            else:
+                text +=")"
+        self.entry.set_text(text)
     def clickedEnter(self, entry):
-        # match self.operator:
-        #     case "m": self.entry.set_text(self.a[0]*self.a[1])
-        #     case "d": self.entry.set_text(self.a[0]/self.a[1])
-        #     case "a": self.entry.set_text(self.a[0]+self.a[1])
-        #     case "s": self.entry.set_text(self.a[0]-self.a[1])
         submit = self.entry.get_text()
         answer = eval(submit)
         self.entry.set_text(str(answer))
