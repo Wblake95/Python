@@ -59,17 +59,18 @@ class Calculator(Gtk.Window):
         buttonParaRight = Gtk.Button(label=")")
         buttonParaRight.connect("clicked", self.clickedParaRight)
         buttonPeriod = Gtk.Button(label=".")
-            # function
+        buttonPeriod.connect("clicked", self.clickedPeriod)
 
         # Entry field
         self.entry = Gtk.Entry()
         self.entry.set_text("")
+        self.entry.set_width_chars(25)
         self.entry.set_editable(False)
 
         # Organizing the application buttons and entry field
         grid = Gtk.Grid()
         grid.add(buttonClear)
-        grid.attach_next_to(self.entry, buttonClear, Gtk.PositionType.TOP,3,4)
+        grid.attach_next_to(self.entry, buttonClear, Gtk.PositionType.TOP,4,1)
         grid.attach(buttonParaLeft,1,0,1,1)
         grid.attach(buttonParaRight,2,0,1,1)
         grid.attach(button7,0,1,1,1)
@@ -138,7 +139,7 @@ class Calculator(Gtk.Window):
 
     # Check to make sure a sign is not repeated
     def signCheck(self, text):
-        check = ["*","/","+","-"]
+        check = ["*","/","+","-","."]
         checkSign = self.entry.get_text()
         if checkSign == "":
             return False
@@ -183,10 +184,12 @@ class Calculator(Gtk.Window):
     def clickedSign(self, entry):
         text = self.entry.get_text()
         if not self.signCheck(text):
-            # if text[-1] == "-":
             text += "(-"
         self.entry.set_text(text)
-    # def clickedPeiod(self, entry):
+    def clickedPeriod(self, entry):
+        text = self.entry.get_text()
+        text += "."
+        self.entry.set_text(text)
     def clickedEnter(self, entry):
         submit = self.entry.get_text()
         try:
