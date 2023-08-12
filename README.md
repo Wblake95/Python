@@ -15,6 +15,6 @@
 7. try the different building tools they recommend
 
 ### Django back end for web page (idea)
-1. review articles [Boot.dev article] (https://blog.boot.dev/backend/become-backend-developer/and) [Pythoncentral.io article](https://www.pythoncentral.io/how-to-create-a-website-with-python-for-beginners/)
-2. intsall Django (use default database for simplicity)
+1. review articles [Boot.dev article](https://blog.boot.dev/backend/become-backend-developer/and) [Pythoncentral.io article](https://www.pythoncentral.io/how-to-create-a-website-with-python-for-beginners/)
+2. install Django (use default database for simplicity)
 3. something...
