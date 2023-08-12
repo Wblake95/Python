@@ -6,10 +6,15 @@
 2. ~display text on screen~
 3. ~create logic for buttons~
     - ~append each number to a string~
-    - ~opporation to result~
+    - ~operation to result~
 4. ~optional~
     - ~history (This would just be another entry or label field with the last complete answer.)~
     - ~clean up code to multiple files~
-5. learn about testing and building
+5. [GTK4 official doc](https://docs.gtk.org/gtk4/) with same application [GTK4 Tutorial](https://github.com/Taiko2k/GTK4PythonTutorial)
+6. learn about testing and building
+7. try the different building tools they recommend
 
 ### Django back end for web page (idea)
+1. review articles [Boot.dev article] (https://blog.boot.dev/backend/become-backend-developer/and) [Pythoncentral.io article](https://www.pythoncentral.io/how-to-create-a-website-with-python-for-beginners/)
+2. intsall Django (use default database for simplicity)
+3. something...
