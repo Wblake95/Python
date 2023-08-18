@@ -19,3 +19,7 @@
 1. review articles [Boot.dev article](https://blog.boot.dev/backend/become-backend-developer/and) [Pythoncentral.io article](https://www.pythoncentral.io/how-to-create-a-website-with-python-for-beginners/)
 2. install Django (use default database for simplicity)
 3. something...
+
+
+### Project ideas
+1. QR code creator/extractor
