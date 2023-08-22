@@ -4,7 +4,16 @@
 import re, pyclip
 
 phonePattern = re.compile(r'(?m)(?:\(?\d{3}\)?[-.\s])?\d{3}[-.\s]\d{4}', re.DOTALL)
+# multi line search
+# if () and ### area code
+# separators - . or space
+# 3 digits and 4 digits
 emailPattern = re.compile(r'(?m)[\w.%+-]+@(?:[\w-]+\.)+\w{2,}', re.DOTALL)
+# multi line search
+# a word of anylength
+# the @ symbole
+# if there is a wordafter @
+# .com or .xyz
 
 print("This will be searched", pyclip.paste(text=True))
 
