@@ -1,31 +1,15 @@
-# I want to copy something from my clipboard and find emails;phone numbers from it.
-# 1. Get thetext off the clipboard
-#   - Find out what clipboard I have: Wayland clipboard
-#   - How to access that clipboard: wl-copy/wl-paste
-# 2. Find all phone numbers and email addressses in the clipboard
-# 3. Paste them back into the clipboard
+# had trouble getting my pattern to work, but got help
+# https://stackoverflow.com/questions/76949942/python-re-findall-returns-empy-strings
 
-# Pyperclip is not an option (wayland is not supported). Use Subprocess to run wl-copy/wl-paste
+import re, pyclip
 
-import re, subprocess
+phonePattern = re.compile(r'(?m)(?:\(?\d{3}\)?[-.\s])?\d{3}[-.\s]\d{4}', re.DOTALL)
+emailPattern = re.compile(r'(?m)[\w.%+-]+@(?:[\w-]+\.)+\w{2,}', re.DOTALL)
 
-phone = re.compile(r'(\d{3})?(\W)?\d{3}(\W)?\d{4}')
-email = re.compile(r'\w+[.]?(\w+)?@(/w+).com')
-x = subprocess.run("wl-paste", capture_output=True, text=True)
+print("This will be searched", pyclip.paste(text=True))
 
-# phone.search(x.stdout).group()
-# email.search(x.stdout).group()
-try:
-    phone1 = phone.search('925-819-3408')
-    print(phone1.group())
-except:
-    pass
-finally:
-    print("no phone numbers") 
-try:
-    email1 = email.search('wesleyblake95@gmail.com')
-    email1.group()
-except:
-    pass
-finally:
-    print("no emails") 
+phone= phonePattern.findall(pyclip.paste(text=True))
+print("Phone numbers found:", phone)
+
+email = emailPattern.findall(pyclip.paste(text=True))
+print("emails found: ", email)
