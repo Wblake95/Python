@@ -1,5 +1,5 @@
 # My python learning path.
-# Development
+# Development goals
 1. [Automate the boring stuff](https://automatetheboringstuff.com/)
 2. Dive into Data Science (book physical)
 4. Python cli for regex (text, clipboard, pdf, etc)
