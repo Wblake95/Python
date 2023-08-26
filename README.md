@@ -1,6 +1,6 @@
 # My python learning path.
 # Development
-1. [Automate the boring stuff](koodo)
+1. [Automate the boring stuff](https://automatetheboringstuff.com/)
 2. Dive into Data Science (book physical)
 4. Python cli for regex (text, clipboard, pdf, etc)
     * re, Args, PDF?, GUI(tkinter)?
