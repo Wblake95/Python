@@ -3,7 +3,7 @@
 
 import re, pyclip
 
-phonePattern = re.compile(r'(?m)(?:\(?\d{3}\)?[-.\s])?\d{3}[-.\s]\d{4}', re.DOTALL)
+phonePattern = re.compile(r'(?m)(?:^[\w]\(?\d{3}\)?[-.\s\\])?\d{3}[-.\s\\]\d{4}', re.DOTALL)
 # multi line search
 # if () and ### area code
 # separators - . or space
@@ -15,7 +15,7 @@ emailPattern = re.compile(r'(?m)[\w.%+-]+@(?:[\w-]+\.)+\w{2,}', re.DOTALL)
 # if there is a wordafter @
 # .com or .xyz
 
-print("This will be searched", pyclip.paste(text=True))
+# print("This will be searched", pyclip.paste(text=True))
 
 phone= phonePattern.findall(pyclip.paste(text=True))
 print("Phone numbers found:", phone)
