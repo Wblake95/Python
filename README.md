@@ -9,11 +9,11 @@
 6. Python logout
     Goals
     * Transparent screen with options for (logout, shutdown)
-    [GTK](https://pygobject.readthedocs.io/en/latest/index.html)
+    * [GTK](https://pygobject.readthedocs.io/en/latest/index.html)
         * Glade, Gtk.Builder, GnomeBuilder
-    [os](https://docs.python.org/3/library/os.html#os.getuid)
-    [signal](https://docs.python.org/3/library/signal.html#examples)
-    [subprocess](https://docs.python.org/3/library/subprocess.html)
+    * [os](https://docs.python.org/3/library/os.html#os.getuid)
+    * [signal](https://docs.python.org/3/library/signal.html#examples)
+    * [subprocess](https://docs.python.org/3/library/subprocess.html)
 7. Email client
     * pop (keep email in local files)
     * imap (access emails remotely)
