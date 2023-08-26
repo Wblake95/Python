@@ -1,25 +1,28 @@
 # My python learning path.
-* Step one, make a gui application. (use official website guide)
-* Step two, learn Django. (use official website guide)
-### Create a calculator with Python GTK
-1. ~create interface~
-2. ~display text on screen~
-3. ~create logic for buttons~
-    - ~append each number to a string~
-    - ~operation to result~
-4. ~optional~
-    - ~history (This would just be another entry or label field with the last complete answer.)~
-    - ~clean up code to multiple files~
-5. ~[GTK4 official doc](https://docs.gtk.org/gtk4/) with same application [GTK4 Tutorial](https://github.com/Taiko2k/GTK4PythonTutorial)~
-6. ~learn about building~
-7. learn about testing
-8. try the different building tools they recommend
-
-### Django back end for web page (idea)
-1. review articles [Boot.dev article](https://blog.boot.dev/backend/become-backend-developer/and) [Pythoncentral.io article](https://www.pythoncentral.io/how-to-create-a-website-with-python-for-beginners/)
-2. install Django (use default database for simplicity)
-3. something...
-
-
-### Project ideas
-1. QR code creator/extractor
+# Development
+    1. [Automate the boring stuff](koodo)
+    2. Dive into Data Science (book physical)
+    4. Python cli for regex (text, clipboard, pdf, etc)
+        * re, Args, PDF?, GUI(tkinter)?
+    5. Python discord bot
+        [Discord API](https://discord.com/developers/applications)
+    6. Python logout
+        Goals
+        * Transparent screen with options for (logout, shutdown)
+        [GTK](https://pygobject.readthedocs.io/en/latest/index.html)
+            * Glade, Gtk.Builder, GnomeBuilder
+        [os](https://docs.python.org/3/library/os.html#os.getuid)
+        [signal](https://docs.python.org/3/library/signal.html#examples)
+        [subprocess](https://docs.python.org/3/library/subprocess.html)
+    7. Email client
+        * pop (keep email in local files)
+        * imap (access emails remotely)
+        * smtp (to send emails)
+        * oauth2 (for 2FA)
+        * yaml/configparser (for keeping config files)
+        [poplib](https://docs.python.org/3/library/poplib.html)
+        [imap](https://docs.python.org/3/library/imaplib.html)
+        [smtp](https://docs.python.org/3/library/smtplib.html)
+        [oauth2](https://python-oauth2.readthedocs.io/en/latest/)
+        [yaml](https://python.land/data-processing/python-yaml)
+        [configparser](https://docs.python.org/3/library/configparser.html)
