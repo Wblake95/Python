@@ -33,6 +33,7 @@ def mysqrt(num1):
     temp = num1
     while True:
         x = multi(temp,temp)
+        # print(f'''{x=}\n{hi=}\n{low=}\n{temp=}''')
         if x > num1:
             hi = temp
             temp = div(temp,2)
@@ -43,4 +44,7 @@ def mysqrt(num1):
             # return low, temp
         if x == num1:
             return temp
+            break
+        if div((hi-low),2) == 0:
+            print("No square root for", num1)
             break
