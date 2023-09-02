@@ -1,15 +1,20 @@
-# the algorithm for sqaure root is a binary search
+# the algorithm for square root is a binary search
 def multi(num1,num2):
+    '''
+    :param num1: first int
+    :param num2: second int
+    '''
     sum = 0
-    if num2 > num1:
-        temp, num1 = num1, num2
-        num1 = temp
     for i in range(num2):
-        sum = num1 + num1
-        return sum
+        sum += num1
+        if i == num2-1:
+            return sum
 
 def div(num1,num2):
-    sum = 0
+    '''
+    :param num1: first int
+    :param num2: second int
+    '''
     count = 0
     while True:
         num1 = num1 - num2
@@ -20,18 +25,22 @@ def div(num1,num2):
             break
 
 def mysqrt(num1):
-    hi = 0
+    '''
+    :param num1: number you are looking for
+    '''
+    hi = num1
     low = 0
     temp = num1
     while True:
-        if multi(temp,temp) > num1:
+        x = multi(temp,temp)
+        if x > num1:
             hi = temp
-            temp = temp//2
-        elif multi(temp,temp) < num1:
+            temp = div(temp,2)
+            # return hi, temp
+        if x < num1:
             low = temp
-            temp = (hi+low)//2
-        elif multi(temp,temp) == num1:
+            temp = div((hi+low),2)
+            # return low, temp
+        if x == num1:
             return temp
             break
-        else:
-            print("Something went wrong")
