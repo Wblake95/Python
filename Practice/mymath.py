@@ -13,7 +13,11 @@ def div(num1,num2):
     count = 0
     while True:
         num1 = num1 - num2
-        count += 1
+        if num1 >= 0:
+            count += 1
+        elif num1 <= 0:
+            return count
+            break
 
 def mysqrt(num1):
     hi = 0
