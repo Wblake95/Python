@@ -11,19 +11,21 @@ for i in range(65,(65+26)):
 
 score = 0
 
-for i in file:
-    # grabs line with is a string
+for i in file:# this is a string
     if not i:
         break
-    for j in i:
-        # literally create temp
-        temp = j
-        count = 0
-        for h in i:
-            # compare temp to char in string,
-            # if count > 1, break
-            if temp == h:
-                count +=1
-            if count > 1:
-                score += tally[h]
-                break
+    ruck1 = ""
+    ruck2 = ""
+    for j in range(len(i)):# split string in half
+        if j < len(i)//2:# first half of string
+            ruck1 += i[j]
+        else:# second half of string
+            ruck2 += i[j]
+    # print("ruck1:", len(ruck1))
+    # print("ruck2:", len(ruck2))
+    for h in ruck1:# grab letter
+        if h in ruck2:# check letter in ruck2
+            score += tally[h]
+            break
+
+print(score)
