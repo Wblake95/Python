@@ -18,4 +18,12 @@ with open("temp.txt") as file:
             temp = i.split()
             instructionList.append(temp)
 
+for i in instructionList:
+    for j in range(int(i[1])):
+        project[int(i[5])].append(project[int(i[3])].pop())
 
+temp = ""
+for i in project:
+    temp += project[i].pop()
+
+print(temp.upper())
