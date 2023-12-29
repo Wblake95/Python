@@ -2,6 +2,7 @@
 # My solution
 
 with open("day1.txt") as file:
+#with open("temp.txt") as file:
     nums = [x for x in range(10)]
     spelledNums = {
             "one": 1,
@@ -15,21 +16,34 @@ with open("day1.txt") as file:
             "nine": 9,
             "zero": 0
             }
-    # grab 5 letters at a time, check to see if a number is first, then check for string.
-    # repeat process.
     answer = 0
+    #end = 0
     for i in file:
-        temp = ''
-        for j in i:
-            if j in str(nums):
-                temp += j
-                # print(temp)
-            if j in spelledNums:
-                temp += spelledNums[j]
-        if len(temp) > 0:
-            numStr = temp[0] + temp[-1]
-            # print(numStr)
-            answer += int(numStr)
-            # print(answer)
+        #end += 1
+        #if end == 10:
+        #    break
+        temp = {}
+        low = ""
+        high = ""
+        for j in nums:
+            begNum = i.find(str(j))
+            if begNum != -1:
+                temp.update({begNum:j})
+        for j in nums:
+            endNum = i.rfind(str(j))
+            if endNum != -1:
+                temp.update({endNum:j})
+        for k in spelledNums:
+            begSpell = i.find(k)
+            if begSpell != -1:
+                temp.update({begSpell:spelledNums[k]})
+        for k in spelledNums:
+            endSpell = i.rfind(k)
+            if endSpell != -1:
+                temp.update({endSpell:spelledNums[k]})
+        low = min(temp.keys())
+        high = max(temp.keys())
+        temp = str(temp[low]) + str(temp[high])
+        #print("low",low,"high",high,"temp",temp,"i",i)
+        answer += int(temp)
     print(answer)
-
