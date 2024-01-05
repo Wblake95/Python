@@ -9,11 +9,8 @@ with open("day1.txt") as file:
         for j in i:
             if j in str(nums):
                 temp += j
-                # print(temp)
         if len(temp) > 0:
             numStr = temp[0] + temp[-1]
-            # print(numStr)
             answer += int(numStr)
-            # print(answer)
     print(answer)
 

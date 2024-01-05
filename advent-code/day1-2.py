@@ -17,11 +17,7 @@ with open("day1.txt") as file:
             "zero": 0
             }
     answer = 0
-    #end = 0
     for i in file:
-        #end += 1
-        #if end == 10:
-        #    break
         temp = {}
         low = ""
         high = ""
@@ -44,6 +40,5 @@ with open("day1.txt") as file:
         low = min(temp.keys())
         high = max(temp.keys())
         temp = str(temp[low]) + str(temp[high])
-        #print("low",low,"high",high,"temp",temp,"i",i)
         answer += int(temp)
     print(answer)
