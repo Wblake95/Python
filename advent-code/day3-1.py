@@ -1,62 +1,79 @@
-# We have a list of parts that we need to identify and figure out which one is missing.
-# If a number is adjacent to a symbol, except for a period, it is a part number.
-# after that, sum the total of part numbers.
+# my goal, locate the special characters and find the number around it.
 
-def funcPrescore(prescore):
-    index = table[i].find(table[i][j])
-    while index > 0 and (table[i][index-1] != "." or table[i][index-1] not in symbol):
-        index -= 1
-    for h in range(index,len(table[i])):
-        if table[i][index] != ".":
-            prescore = prescore + table[i][index]
-    return prescore
+def myfunc(index, string):
+    global temp
+    other = ""
+    indexFound = False
+    target = string[index]
+    while True:
+        if string[index-1] in nums:
+            index -= 1
+        else:
+            break
+    for x in range(index,len(string)):
+        if string[x] not in nums:
+            other = ""
+        if string[x] in nums:
+            other = other + string[x]
+        if string[x] == target: 
+            indexFound = True
+        if indexFound:
+            try:
+                if string[x+1] not in nums:
+                    temp.add(other)
+                    break
+                elif index == len(string)-1:
+                    temp.add(other)
+                    break
+            finally:
+                print("fail")
+                break
 
-
-with open("temp.txt", "r") as file:
+with open("data.txt", "r") as file:
     score = 0
-    symbol = ["!","@","#","$","%","^","&","*","(",")","-","_","=","+",",","/","?"]
     table = {
             }
+    symbols = ["!","@","#","$","%","^","&","*","(",")","-","_","=","+",",","<",">","/","?"]
+    nums = ["1","2","3","4","5","6","7","8","9","0"]
     incr = 0
-    prescore = ""
+    temp = set()
 
-    for i in file:# transfer file to dict aka table
-        table.update({incr:i})
+    for i in file:
+        table.update({incr:""})
+        for j in i:
+            if j == "\n":
+                break
+            table[incr] = table[incr] + j
         incr += 1
-
-    for i in range(len(table)):# line # in table
-        prescore = ""# here???
-        for j in range((len(table[i]))):# char # in line
-            if table[i][j] == "." or table[i][j] in symbol:# skip periods
-                break
-            if table[i][j] in prescore:
-                break
-            #up left diagnal
-            if i > 0 and j > 0 and table[i-1][j-1] in symbol:
-                funcPrescore(prescore)
-            #up
-            elif i > 0 and table[i-1][j] in symbol:
-                prescore = funcPrescore(prescore)
-            #up right diagnal
-            elif i > 0 and j <= len(table[i])-1 and table[i-1][j+1] in symbol:
-                prescore = funcPrescore(prescore)
-            #left
-            elif j > 0 and table[i][j-1] in symbol:
-                prescore = funcPrescore(prescore)
-            #right
-            elif j < len(table[i])-1 and table[i][j+1] in symbol:
-                prescore = funcPrescore(prescore)
-            #down left diagnal
-            elif i < len(table)-1 and j > 0 and table[i+1][j-1] in symbol:
-                prescore = funcPrescore(prescore)
-            #down
-            elif i < len(table)-1 and table[i+1][j] in symbol:
-                prescore = funcPrescore(prescore)
-            #down right diagnal
-            elif i < len(table)-1 and j <= len(table[i])-1 and table[i+1][j+1] in symbol:
-                prescore = funcPrescore(prescore)
-            else:
-                print("i", i,"\n", table[i],"\n", prescore)
-
-        #answer
-        score += int(prescore)
+    for i in table:
+        for j in range(len(table[i])):
+            try:
+                # left up
+                if table[i][j] in symbols and table[i-1][j-1] in nums:
+                    myfunc((j-1),table[i-1])
+                # up
+                if table[i][j] in symbols and table[i-1][j] in nums:
+                    myfunc(j,table[i-1])
+                # up right
+                if table[i][j] in symbols and table[i-1][j+1] in nums:
+                    myfunc((j+1),table[i-1])
+                # left
+                if table[i][j] in symbols and table[i][j-1] in nums:
+                    myfunc((j-1),table[i])
+                # right
+                if table[i][j] in symbols and table[i][j+1] in nums:
+                    myfunc((j+1),table[i])
+                # left down
+                if table[i][j] in symbols and table[i+1][j-1] in nums:
+                    myfunc((j-1),table[i+1])
+                # down
+                if table[i][j] in symbols and table[i+1][j] in nums:
+                    myfunc(j,table[i+1])
+                # down right
+                if table[i][j] in symbols and table[i+1][j+1] in nums:
+                    myfunc((j+1),table[i+1])
+            finally:
+                None
+    for i in temp:
+        score += int(i)
+    print(score)
