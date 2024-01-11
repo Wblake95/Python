@@ -7,8 +7,10 @@ def myFunc(index, string):
             if x in listNums:
                 index -= 1
             else:
-                index += 1
+                index += 1 
                 break
+    if index < 0:
+        index = 0
     for x in range(index,len(string)):
         if string[x] in listNums:
             part = part + string[x]
@@ -17,7 +19,7 @@ def myFunc(index, string):
     return part
 
 
-with open("temp.txt", "r") as file:
+with open("data.txt", "r") as file:
     score = 0
     table = {
             }
@@ -45,7 +47,9 @@ for i in range(len(table)):
                     temp.add(myFunc(j,table[i-1]))
                 # left up
                 if j > 0:
+                    print("up left 1",i,j)
                     if table[i-1][j-1] in listNums:
+                        print("up left 2",i,j)
                         temp.add(myFunc(j-1,table[i-1]))
                 # up right
                 if j < strLen:
@@ -53,7 +57,9 @@ for i in range(len(table)):
                         temp.add(myFunc(j+1,table[i-1]))
             # left
             if j > 0:
+                print("left 1",i,j)
                 if table[i][j-1] in listNums:
+                    print("left 2",i,j)
                     temp.add(myFunc(j-1,table[i]))
             # right
             if j < strLen:
@@ -71,7 +77,7 @@ for i in range(len(table)):
                 if j < strLen:
                     if table[i+1][j+1] in listNums:
                         temp.add(myFunc(j+1,table[i+1]))
-print(temp)
+#print(temp)
 for i in temp:
     if i == '':
         continue
