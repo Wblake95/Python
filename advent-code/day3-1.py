@@ -11,12 +11,17 @@ def myFunc(index, string):
                 break
     if index < 0:
         index = 0
-    for x in range(index,len(string)):
-        if string[x] in listNums:
-            part = part + string[x]
+    for x in string[index:]:
+        if x in listNums:
+                part = part + x
         else:
             break
-    return part
+    if part != temp[-1]:
+        return part
+
+def appendToList(myFunc):
+    if myFunc != None:
+        temp.append(myFunc)
 
 
 with open("data.txt", "r") as file:
@@ -26,7 +31,7 @@ with open("data.txt", "r") as file:
     listSymbols = ["!","@","#","$","%","^","&","*","(",")","-","_","=","+",",","<",">","/","?"]
     listNums = ["1","2","3","4","5","6","7","8","9","0"]
     incr = 0
-    temp = set()
+    temp = [None]
     for i in file:
         table.update({incr:""})
         for j in i:
@@ -36,7 +41,7 @@ with open("data.txt", "r") as file:
         incr += 1
 
 
-for i in range(len(table)):
+for i in table.keys():
     for j in range(len(table[i])):
         symbol = table[i][j]
         strLen = len(table[i])-1
@@ -44,42 +49,36 @@ for i in range(len(table)):
             # up
             if i > 0:
                 if table[i-1][j] in listNums:
-                    temp.add(myFunc(j,table[i-1]))
+                    appendToList(myFunc(j,table[i-1]))
                 # left up
                 if j > 0:
-                    print("up left 1",i,j)
                     if table[i-1][j-1] in listNums:
-                        print("up left 2",i,j)
-                        temp.add(myFunc(j-1,table[i-1]))
+                        appendToList(myFunc(j-1,table[i-1]))
                 # up right
                 if j < strLen:
                     if table[i-1][j+1] in listNums:
-                        temp.add(myFunc(j+1,table[i-1]))
+                        appendToList(myFunc(j+1,table[i-1]))
             # left
             if j > 0:
-                print("left 1",i,j)
                 if table[i][j-1] in listNums:
-                    print("left 2",i,j)
-                    temp.add(myFunc(j-1,table[i]))
+                    appendToList(myFunc(j-1,table[i]))
             # right
             if j < strLen:
                 if table[i][j+1] in listNums:
-                    temp.add(myFunc(j+1,table[i]))
+                    appendToList(myFunc(j+1,table[i]))
             # down
             if i < strLen:
                 if table[i+1][j] in listNums:
-                    temp.add(myFunc(j,table[i+1]))
+                    appendToList(myFunc(j,table[i+1]))
                 # left down
                 if j > 0:
                     if table[i+1][j-1] in listNums:
-                        temp.add(myFunc(j-1,table[i+1]))
+                        appendToList(myFunc(j-1,table[i+1]))
                 # down right
                 if j < strLen:
                     if table[i+1][j+1] in listNums:
-                        temp.add(myFunc(j+1,table[i+1]))
-#print(temp)
+                        appendToList(myFunc(j+1,table[i+1]))
+temp.pop(0)
 for i in temp:
-    if i == '':
-        continue
     score += int(i)
 print(score)
