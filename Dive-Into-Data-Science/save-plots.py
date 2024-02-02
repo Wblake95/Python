@@ -1,8 +1,6 @@
 #! /usr/bin/env python
 
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sn
+import pandas as pd, matplotlib.pyplot as plt, seaborn as sns
 
 # First plot to see number of riders per hour
 hours = pd.read_csv("myData.csv")
@@ -45,11 +43,36 @@ hours = pd.read_csv("myData.csv")
 #plt.savefig("count-and-registered-by-hour")
 
 
-fig, ax = plt.subplots(figsize=(10,6))
-sn.boxplot(x="hr",y="registered",data=hours)
-plt.xlabel("Hour")
-plt.ylabel("Registered")
-plt.title("Registered by Hour")
+#fig, ax = plt.subplots(figsize=(10,6))
+#sns.boxplot(x="hr",y="registered",data=hours)
+#plt.xlabel("Hour")
+#plt.ylabel("Registered")
+#plt.title("Registered by Hour")
+#
+#plt.savefig("registered-by-hour-seaborn.png")
+#plt.show()
 
-plt.savefig("registered-by-hour-seaborn.png")
+
+#colVars = ["hr", "temp", "windspeed"]
+#first100Hours = hours.loc[0:100, colVars]
+#sns.pairplot(first100Hours, corner=True)
+#plt.savefig("sns-pairplot-hr-temp-windspeed")
+#plt.show()
+
+
+#fig, ax = plt.subplots(figsize=(10,6))
+#plt.scatter(x=hours["temp"],y=hours["hum"],c="blue")
+#plt.xlabel("Humidity")
+#plt.ylabel("Tempature")
+#plt.title("Scatter Plot Test, Hum v. Temp")
+#plt.savefig("scatter-plot-test-hum-tmp")
+#plt.show()
+
+
+fig, ax = plt.subplots(figsize=(10,6))
+plt.scatter(x=hours["casual"],y=hours["registered"],c="blue")
+plt.xlabel("Casual")
+plt.ylabel("Registered")
+plt.title("Correlation Scatter for Registered and Casual r={:.2f}".format(hours["registered"].corr(hours["casual"])))
+plt.savefig("correlation-scatter-reg-v-cas")
 plt.show()
