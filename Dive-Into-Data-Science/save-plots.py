@@ -56,7 +56,7 @@ hours = pd.read_csv("myData.csv")
 #colVars = ["hr", "temp", "windspeed"]
 #first100Hours = hours.loc[0:100, colVars]
 #sns.pairplot(first100Hours, corner=True)
-#plt.savefig("sns-pairplot-hr-temp-windspeed")
+#plt.savefig("sns-pairplot-hr-temp-windspeed.png")
 #plt.show()
 
 
@@ -65,14 +65,34 @@ hours = pd.read_csv("myData.csv")
 #plt.xlabel("Humidity")
 #plt.ylabel("Tempature")
 #plt.title("Scatter Plot Test, Hum v. Temp")
-#plt.savefig("scatter-plot-test-hum-tmp")
+#plt.savefig("scatter-plot-test-hum-tmp.png")
 #plt.show()
 
 
-fig, ax = plt.subplots(figsize=(10,6))
-plt.scatter(x=hours["casual"],y=hours["registered"],c="blue")
-plt.xlabel("Casual")
-plt.ylabel("Registered")
-plt.title("Correlation Scatter for Registered and Casual r={:.2f}".format(hours["registered"].corr(hours["casual"])))
-plt.savefig("correlation-scatter-reg-v-cas")
+#fig, ax = plt.subplots(figsize=(10,6))
+#plt.scatter(x=hours["casual"],y=hours["registered"],c="blue")
+#plt.xlabel("Casual")
+#plt.ylabel("Registered")
+#plt.title("Correlation Scatter for Registered and Casual r={:.2f}".format(hours["registered"].corr(hours["casual"])))
+#plt.savefig("correlation-scatter-reg-v-cas.png")
+#plt.show()
+
+
+#corrList = ['hr','temp','windspeed']
+#plt.figure(figsize=(10,6))
+#matrix = hours[corrList].corr()
+#sns.heatmap(matrix,annot=True,cmap='coolwarm',fmt=".1f",xticklabels=corrList,yticklabels=corrList)
+#plt.savefig("corr-heatmap-hr-tmp-windspd.png")
+#plt.show()
+
+
+myPivotTable = hours.pivot_table(index='hr',columns='weekday',values='count')
+plt.figure(figsize=(20,10))
+sns.heatmap(myPivotTable,annot=True,fmt=".3f",cmap="coolwarm",linewidths=.5,vmin=0)
+plt.savefig("heatmap-pivot-table-hr-wkd-cnt.png")
 plt.show()
+
+
+
+
+
