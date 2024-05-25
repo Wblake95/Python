@@ -1,0 +1,3 @@
+#Notes to self
+
+1. Change, getData.py -> take arguments (url, location)
