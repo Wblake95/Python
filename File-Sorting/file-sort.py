@@ -16,4 +16,4 @@ for i in checkList:
         case "jpeg":
             shutil.move(i, pics)
         case ".pdf":
-            shutil.move(i, doc)
+            shutil.move(i,doc)
